@@ -1,0 +1,46 @@
+import "package:flutter/material.dart";
+import "../models/amateka.dart";
+
+class HistoryScreen extends StatefulWidget {
+  const HistoryScreen({super.key});
+
+  @override
+  _HistoryScreenState createState() => _HistoryScreenState();
+}
+
+class _HistoryScreenState extends State<HistoryScreen> {
+  final List<Amateka> _amateka = [
+    Amateka(
+      id: "1",
+      izina: "Rukundo Vivens",
+      ubwoko: "Umusanzu",
+      amafaranga: 2000,
+      ibisobanuro: "Yatanze umusanzu",
+      itariki: "06/07/2026 10:30",
+      icon: Icons.savings,
+    ),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Amateka"),
+      ),
+      body: ListView.builder(
+        itemCount: _amateka.length,
+        itemBuilder: (context, index) {
+          final amateka = _amateka[index];
+          return Card(
+            child: ListTile(
+              leading: Icon(amateka.icon),
+              title: Text(amateka.izina),
+              subtitle: Text(amateka.ibisobanuro),
+              trailing: Text("${amateka.amafaranga} RWF"),
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
