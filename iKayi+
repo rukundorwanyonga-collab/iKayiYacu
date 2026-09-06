@@ -1,0 +1,99 @@
+import "package:flutter/material.dart";
+import "package:provider/provider.dart";
+import "providers/app_provider.dart";
+import "screens/dashboard_screen.dart";
+import "screens/members_list_screen.dart";
+import "screens/loans_screen.dart";
+import "screens/history_screen.dart";
+import "screens/committee_screen.dart";
+
+void main() {
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => AppProvider(),
+        ),
+      ],
+      child: const IkayiApp(),
+    ),
+  );
+}
+
+class IkayiApp extends StatelessWidget {
+  const IkayiApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: "Ikayi Yacu",
+      theme: ThemeData(
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color(0xFF6C63FF),
+        ),
+      ),
+      home: const AppBottomBar(),
+    );
+  }
+}
+
+class AppBottomBar extends StatefulWidget {
+  const AppBottomBar({super.key});
+
+  @override
+  _AppBottomBarState createState() => _AppBottomBarState();
+}
+
+class _AppBottomBarState extends State<AppBottomBar> {
+  int _currentIndex = 0;
+
+  final List<Widget> _screens = [
+    const DashboardScreen(),
+    const MembersListScreen(),
+    const LoansScreen(),
+    const HistoryScreen(),
+    const CommitteeScreen(),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: _screens[_currentIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        currentIndex: _currentIndex,
+        selectedItemColor: const Color(0xFF6C63FF),
+        unselectedItemColor: Colors.grey,
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.dashboard),
+            label: "Dashboard",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.people),
+            label: "Abanyamuryango",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.account_balance_wallet),
+            label: "Inguzanyo",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.history),
+            label: "Amateka",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.groups),
+            label: "Komite",
+          ),
+        ],
+      ),
+    );
+  }
+}
