@@ -1,0 +1,67 @@
+import "package:flutter/material.dart";
+import "../models/inguzanyo.dart";
+
+class LoansScreen extends StatefulWidget {
+  const LoansScreen({super.key});
+
+  @override
+  _LoansScreenState createState() => _LoansScreenState();
+}
+
+class _LoansScreenState extends State<LoansScreen> {
+  final List<Inguzanyo> _inguzanyo = [
+    Inguzanyo(
+      id: "1",
+      izina: "Rukundo Vivens",
+      inguzanyoAmafaranga: 50000,
+      impamvu: "Kugura ifumbire",
+      umwishingizi: "Mugisha Eric",
+      akagari: "Kigarama",
+      umudugudu: "Kabeza",
+      itariki: "01/07/2026",
+      itarikiNtarengwa: "01/10/2026",
+      yarishyuye: false,
+    ),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Inguzanyo"),
+      ),
+      body: ListView.builder(
+        itemCount: _inguzanyo.length,
+        itemBuilder: (context, index) {
+          final inguzanyo = _inguzanyo[index];
+          return Card(
+            child: ListTile(
+              leading: CircleAvatar(
+                child: Text(inguzanyo.izina.substring(0, 1)),
+              ),
+              title: Text(inguzanyo.izina),
+              subtitle: Text("${inguzanyo.inguzanyoAmafaranga} RWF"),
+              trailing: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  IconButton(
+                    icon: const Icon(Icons.edit, color: Colors.blue),
+                    onPressed: () {},
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.delete, color: Colors.red),
+                    onPressed: () {},
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: const Icon(Icons.add),
+      ),
+    );
+  }
+}
