@@ -1,0 +1,63 @@
+import "package:flutter/material.dart";
+import "../models/umukozi.dart";
+
+class CommitteeScreen extends StatefulWidget {
+  const CommitteeScreen({super.key});
+
+  @override
+  _CommitteeScreenState createState() => _CommitteeScreenState();
+}
+
+class _CommitteeScreenState extends State<CommitteeScreen> {
+  final List<Umukozi> _abakozi = [
+    Umukozi(
+      id: "1",
+      izina: "Rukundo Vivens",
+      umwanya: "Perezida",
+      phone: "0788222333",
+      email: "vivens@gmail.com",
+      itarikiYatangiriye: "01/01/2026",
+    ),
+    Umukozi(
+      id: "2",
+      izina: "Mugisha Eric",
+      umwanya: "Umubitsi",
+      phone: "0788444555",
+      email: "eric@gmail.com",
+      itarikiYatangiriye: "01/01/2026",
+    ),
+    Umukozi(
+      id: "3",
+      izina: "Uwera Maria",
+      umwanya: "Umwanditsi",
+      phone: "0788666777",
+      email: "maria@gmail.com",
+      itarikiYatangiriye: "01/01/2026",
+    ),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Komite"),
+      ),
+      body: ListView.builder(
+        itemCount: _abakozi.length,
+        itemBuilder: (context, index) {
+          final umukozi = _abakozi[index];
+          return Card(
+            child: ListTile(
+              leading: CircleAvatar(
+                child: Text(umukozi.izina.substring(0, 1)),
+              ),
+              title: Text(umukozi.izina),
+              subtitle: Text(umukozi.umwanya),
+              trailing: Text(umukozi.phone),
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
