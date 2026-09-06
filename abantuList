@@ -1,0 +1,64 @@
+import "package:flutter/material.dart";
+import "../models/umuntu.dart";
+
+class MembersListScreen extends StatefulWidget {
+  const MembersListScreen({super.key});
+
+  @override
+  _MembersListScreenState createState() => _MembersListScreenState();
+}
+
+class _MembersListScreenState extends State<MembersListScreen> {
+  final List<Umuntu> _abantu = [
+    Umuntu(
+      id: "1",
+      izina: "Rukundo Vivens",
+      phone: "0788222333",
+      umusanzu: 2000,
+      ingoboka: 200,
+      igiteranyo: 3400,
+      itariki: "06/07/2026",
+    ),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Abanyamuryango"),
+      ),
+      body: ListView.builder(
+        itemCount: _abantu.length,
+        itemBuilder: (context, index) {
+          final umuntu = _abantu[index];
+          return Card(
+            child: ListTile(
+              leading: CircleAvatar(
+                child: Text(umuntu.izina.substring(0, 1)),
+              ),
+              title: Text(umuntu.izina),
+              subtitle: Text(umuntu.phone),
+              trailing: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  IconButton(
+                    icon: const Icon(Icons.edit, color: Colors.blue),
+                    onPressed: () {},
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.delete, color: Colors.red),
+                    onPressed: () {},
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: const Icon(Icons.add),
+      ),
+    );
+  }
+}
